@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archipelago Airmail — a bush-plane mail run</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game-canvas"></canvas>
+
+<!-- HUD: instruments lit, readable at a glance -->
+<div id="hud" style="display:none">
+  <div id="hud-left">
+    <div class="gauge"><span class="label">ALTITUDE</span><span class="value" id="hud-alt">0 m</span></div>
+    <div class="gauge"><span class="label">SPEED</span><span class="value" id="hud-spd">0 km/h</span></div>
+    <div class="gauge"><span class="label">HEADING</span><span class="value" id="hud-hdg">090° E</span></div>
+    <div class="gauge"><span class="label">VERT SPEED</span><span class="value" id="hud-vs">+0.0 m/s</span></div>
+    <canvas id="attitude" width="120" height="120" title="Attitude indicator"></canvas>
+  </div>
+  <div id="hud-top">
+    <div id="compass-strip"></div>
+    <div id="hud-objective">Fly the rings, then land.</div>
+  </div>
+  <div id="hud-right">
+    <div class="bar-row"><span id="fuel-text">FUEL 100%</span><div class="bar"><div id="fuel-fill"></div></div></div>
+    <div class="bar-row"><span id="thr-text">THR 0%</span><div class="bar"><div id="thr-fill"></div></div></div>
+    <div class="gauge"><span class="label">RINGS</span><span class="value" id="hud-rings">0/4</span></div>
+    <div class="gauge"><span class="label">SCORE</span><span class="value" id="hud-score">0</span></div>
+    <div class="gauge"><span class="label">TIME</span><span class="value" id="hud-timer">00:00</span></div>
+  </div>
+  <div id="hud-message"></div>
+  <div id="hud-help">↑↓ pitch · ←→ bank · SHIFT throttle up · CTRL throttle down · drag mouse to steer · P pause · M mute</div>
+</div>
+
+<!-- Main menu -->
+<div id="menu">
+  <div class="panel">
+    <h1>✈ ARCHIPELAGO AIRMAIL</h1>
+    <p class="tagline">A bush-plane mail run across a tropical island chain. Fly the rings, mind the fuel, land it soft.</p>
+    <div id="mission-list"></div>
+    <button id="btn-fly" class="big">FLY MISSION 1 — FIRST POST</button>
+    <p class="controls">Keyboard: ↑↓ pitch · ←→ bank &amp; turn · SHIFT throttle up · CTRL throttle down · mouse drag steers · P pause · M mute</p>
+    <button id="btn-mute" class="small">Sound: ON</button>
+  </div>
+</div>
+
+<!-- Pause -->
+<div id="pause-screen" style="display:none">
+  <div class="panel">
+    <h2>Paused</h2>
+    <p>Take a breath. The mail can wait — the fuel can't, but it is paused too.</p>
+    <button id="btn-resume" class="big">RESUME</button>
+    <button id="btn-restart" class="small">Restart mission</button>
+    <button id="btn-quit" class="small">Back to menu</button>
+  </div>
+</div>
+
+<!-- End of mission -->
+<div id="end-screen" style="display:none">
+  <div class="panel">
+    <h2 id="end-title">Mail delivered!</h2>
+    <p id="end-body"></p>
+    <button id="btn-again" class="big">FLY AGAIN</button>
+    <button id="btn-next" class="big">NEXT MISSION →</button>
+    <button id="btn-menu" class="small">Back to menu</button>
+  </div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="src/config.js"></script>
+<script src="src/noise.js"></script>
+<script src="src/terrain.js"></script>
+<script src="src/plane.js"></script>
+<script src="src/flight.js"></script>
+<script src="src/rings.js"></script>
+<script src="src/hud.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/game.js"></script>
+</body>
+</html>
